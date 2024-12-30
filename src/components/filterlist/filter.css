@@ -1,0 +1,268 @@
+/* Container */
+.filter-box-container {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 10px;
+
+  border-radius: 10px;
+
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.filter-list {
+  background-color: #f7f7f8;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter-box-input {
+  background-color: #ffff;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid #d1d5db;
+
+  transition: background-color 0.3s ease;
+  min-height: 64px;
+  /* width: 320px; */
+}
+
+.filter-box-search {
+  color: white;
+
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* gap: 8px; */
+  min-height: 64px;
+}
+
+.filter-box-input:hover {
+  background-color: #ebebeb;
+}
+
+.filter-box-title {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+}
+
+.filter-box-placeholder {
+  font-size: 16px;
+  color: #333;
+  background-color: transparent;
+  outline: 0;
+}
+
+.filter-box-placeholder2 {
+  font-size: 16px;
+  background-color: transparent;
+  outline: 0;
+}
+
+.filter-box-dropdown {
+  top: 68px;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 1;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.filter-box-dropdown p {
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.filter-box-dropdown p:hover {
+  background-color: #f0f0f0;
+}
+
+@keyframes date {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.filter-box-datepicker {
+  transform: translateY(-10px);
+  animation: date 0.3s ease-in-out forwards;
+  width: 100%;
+}
+
+.filter-box-search {
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  gap: 8px;
+
+  height: 79px;
+}
+
+/* .filter-box-search:hover {
+  background-color: #c2185b;
+} */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1235px) {
+  .filter-box-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .react-datepicker {
+    flex-wrap: wrap;
+  }
+
+  /* .filter-box-search {
+    width: 320px;
+  } */
+}
+
+.filter-custom-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.filter-custom-tab-button {
+  padding: 5px 15px;
+  border: none;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 5px;
+  border-radius: 20px;
+  color: #000;
+}
+
+.filter-custom-tab-button.filter-active {
+  background-color: #d855a0;
+  color: white;
+}
+
+.filter-custom-box-datepicker {
+  top: 81px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  left: 0;
+  z-index: 1;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.filter-custom-box-datepicker-search {
+  margin-left: 50%;
+  transform: translateX(-50%) !important;
+}
+
+.filter-custom-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+.filter-custom-cancel-btn {
+  background-color: transparent;
+  border: none;
+  color: #6c757d;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filter-custom-apply-btn {
+  background-color: #d855a0;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.filter-custom-apply-btn:disabled {
+  background-color: #f0f0f0;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.react-datepicker {
+  font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+  font-size: 0.8rem;
+  background-color: #fff;
+  color: #000;
+
+  border-radius: 0.3rem;
+  display: inline-block;
+  position: relative;
+  line-height: initial;
+  display: flex;
+  gap: 24px;
+  border: none;
+  justify-content: center;
+}
+
+/* ...animate.. */
+.filter-custom-box-datepicker {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.filter-custom-box-datepicker.opening {
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 30;
+}
+
+.filter-custom-box-datepicker.closing {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* @media (max-width: 400px) {
+  .filter-box-input {
+    width: 285px;
+  }
+  .filter-box-search {
+    width: 285px;
+  }
+} */

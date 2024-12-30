@@ -1,0 +1,111 @@
+.filter-list-tabs-container {
+  border-bottom: 1px solid rgba(255, 255, 255, 24%);
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 28px 20px 0 0 !important;
+  margin-bottom: 24px;
+}
+
+.filter-list-tabs {
+  list-style-type: none;
+  display: flex;
+  gap: 25px;
+  padding: 0;
+  padding-left: 20px;
+}
+
+.filter-list-tab {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Active tab with underline and smooth animation */
+.filter-list-tab-active span {
+  color: white;
+  font-weight: bold;
+}
+.filter-list-tab-active svg {
+  stroke: #d855a0 !important;
+  fill: #d855a0 !important;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+  transition: fill 0.3s ease, transform 0.3s ease;
+}
+.filter-list-tab-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #d855a0 !important;
+  animation: slide-in 0.4s forwards; /* Animation for underline */
+  bottom: -1px;
+}
+
+/* Animation to slide the underline in */
+@keyframes slide-in {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.filter-list-tab:not(.filter-list-tab-active)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  transition: width 0.4s ease-in-out;
+}
+/* svg {
+  fill: white;
+  stroke: #fff;
+} */
+.filter-list-tab-icon {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.coming-soon-text {
+  color: #f066b5;
+  border: 1px solid #f066b5;
+  border-radius: 15px;
+  width: 84px;
+  height: 25px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 600px) {
+  .advance-filter {
+    display: none;
+  }
+  .text-custom {
+    justify-content: center;
+  }
+  h1 {
+    /* text-align: left; */
+  }
+  .top-section {
+    border-radius: 0;
+  }
+  .top-section::after {
+    border-radius: 0;
+  }
+  .mobile {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

@@ -1,0 +1,25 @@
+@media (max-width: 768px) {
+  .img-remove {
+    display: none;
+  }
+}
+.left-bottom-footer {
+  color: var(--Text-Body-300, #d1d5db);
+  /* Body 4/Medium */
+  font-family: "inter-r";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 124%; /* 17.36px */
+  letter-spacing: 0.28px;
+}
+.left-bottom-footer1 {
+  color: #030712;
+
+  font-family: "inter-r";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 124%; /* 17.36px */
+  letter-spacing: 0.28px;
+}

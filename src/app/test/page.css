@@ -1,0 +1,52 @@
+.video-background {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-video {
+  z-index: 1;
+}
+
+.overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 19, 16, 0.6),
+    rgba(5, 6, 5, 1)
+  );
+  z-index: 2;
+}
+.bg1 {
+  /* background-image: url(../../../public/assets/bg.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+
+  position: relative;
+  flex-grow: 1;
+}
+.container-top-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10px;
+  min-height: 100vh;
+}
+.bg1::after {
+  content: "";
+  background: linear-gradient(to bottom, rgba(17, 19, 16, 0.6) 0%, #050605 80%);
+  width: 100%;
+  min-height: 100%;
+  position: fixed;
+  top: 0;
+}
+.dropdown-container {
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  max-height: 0; /* Initially collapsed */
+}
+
+.dropdown-container.open {
+  max-height: 300px; /* Adjust this value based on content height */
+}

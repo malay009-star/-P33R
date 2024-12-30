@@ -1,0 +1,35 @@
+/* styles/Breadcrumb.module.css */
+.breadcrumbContainer {
+  margin-bottom: 1rem;
+  margin-top: 25px;
+}
+
+.breadcrumb {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.breadcrumbItem {
+  display: flex;
+  align-items: center;
+  font-family: "inter-r";
+  font-size: 14px;
+}
+
+.inactive {
+  color: grey;
+  text-decoration: none;
+}
+
+.active {
+  color: black;
+  font-weight: bold;
+}
+
+.arrow {
+  color: grey;
+  margin: 0 0.3rem;
+}

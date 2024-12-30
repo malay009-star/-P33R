@@ -1,0 +1,15 @@
+.horizontal-slider {
+  height: 10px;
+  background: #ddd;
+  border-radius: 5px;
+}
+.thumb {
+  height: 20px;
+  width: 20px;
+  background: #0070f3;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.track {
+  background: #0070f3;
+}

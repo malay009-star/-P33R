@@ -1,0 +1,26 @@
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    width={114}
+    height={39}
+    fill="none"
+    {...props}
+  >
+    <path fill="url(#a)" d="M.6.299h112.8v38.4H.6z" />
+    <defs>
+      <pattern
+        id="a"
+        width={1}
+        height={1}
+        patternContentUnits="objectBoundingBox"
+      >
+        <use xlinkHref="#b" transform="matrix(.00973 0 0 .02857 -.16 0)" />
+      </pattern>
+      <image
+        xlinkHref="data:image/png;base64,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"
+        id="b"
+        width={135}
+        height={35}
+      />
+    </defs>
+  </svg>
