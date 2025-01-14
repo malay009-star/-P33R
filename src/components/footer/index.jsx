@@ -9,6 +9,25 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
+  const socialLinks = [
+    {
+      href: "https://www.linkedin.com/company/p33rglobal/?viewAsMember=true",
+      icon: <FaLinkedinIn />,
+    },
+    {
+      href: "https://www.facebook.com/profile.php?id=61566713021143",
+      icon: <FaFacebookF />,
+    },
+    {
+      href: "https://www.instagram.com/p33rofficial/",
+      icon: <FaInstagram />,
+    },
+    {
+      href: "https://x.com/P33Rglobal",
+      icon: <FaXTwitter />,
+    },
+  ];
+
   return (
     <footer className=" container  z-10 relative mt-auto">
       <div className=" flex flex-col md:flex-row items-center justify-between text-sm text-[#030712]  border-t border-[#D1D5DB] font-[inter-r] py-[24px]">
@@ -44,45 +63,29 @@ const Footer = () => {
         </div>
 
         {/* Social Icons Section */}
-        <div className="flex space-x-4 text-gray-500">
-          <a
-            href="https://www.linkedin.com/company/p33rglobal/?viewAsMember=true"
-            className="hover:text-[#D855A0]"
-          >
-            <FaLinkedinIn />
-          </a>
-          <a
-            href="https://www.facebook.com/profile.php?id=61566713021143"
-            className="hover:text-[#D855A0]"
-          >
-            <FaFacebookF />
-          </a>
-          <a
-            href="https://www.instagram.com/p33rofficial/
-"
-            className="hover:text-[#D855A0]"
-          >
-            <FaInstagram />
-          </a>
-          <a href="https://x.com/P33Rglobal" className="hover:text-[#D855A0]">
-            <FaXTwitter />
-          </a>
+        <div className="flex space-x-4 text-[#4B5563]">
+          {socialLinks.map((link, index) => (
+            <a
+              key={index}
+              href={link.href}
+              className="bg-[#F3F4F6] hover:bg-[#D855A0] hover:text-white text-sm w-8 h-8 flex items-center justify-center rounded-full transition duration-300 ease-in-out"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.icon}
+            </a>
+          ))}
         </div>
       </div>
-      <hr class="border-gray-200 sm:mx-auto dark:border-gray-700 mb-2" />
+      {/* <hr class="border-gray-200 sm:mx-auto dark:border-gray-700 mb-2" />
       <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400 mb-2">
         © 2025{" "}
         <a href="https://p33r.com/" class="hover:underline">
           P33R™
         </a>
         . All Rights Reserved.
-      </span>
+      </span> */}
     </footer>
-    // <footer className="flex bg-black text-white py-4 text-center mt-auto  relative z-10">
-    //   <p>
-    //     About P33R · Privacy policy · Terms & conditions · Partner with P33R
-    //   </p>
-    // </footer>
   );
 };
 

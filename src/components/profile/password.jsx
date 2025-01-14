@@ -79,14 +79,14 @@ export default function PasswordModal({ open, onClose }) {
         <div className="flex flex-col gap-4 w-full">
           {/* Name Fields */}
           <TextInput
-            label="Old Password"
+            label="Enter old password"
             type="password"
             value={data?.oldPassword}
             onChange={(e) => setData({ ...data, oldPassword: e.target.value })}
           />
 
           <TextInput
-            label="New Password"
+            label="Enter new password"
             type="password"
             value={data?.newPassword}
             onChange={(e) => setData({ ...data, newPassword: e.target.value })}
@@ -164,7 +164,7 @@ export default function PasswordModal({ open, onClose }) {
           </div>
 
           <TextInput
-            label="Confirm Password"
+            label="Re-enter new password"
             type="password"
             value={data?.confirmPassword}
             onChange={(e) =>

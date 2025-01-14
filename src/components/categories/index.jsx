@@ -1,101 +1,59 @@
-import "./categories.css";
-import { motion, AnimatePresence } from "framer-motion";
+import { Tabs } from "antd";
 import { FaBed, FaCar, FaCampground, FaShip } from "react-icons/fa";
 import React, { useState } from "react";
+import "./categories.css";
 
-const Tabs = ({ categories = [], selectedCategory, setCategory }) => {
-  const [selectedTab, setSelectedTab] = useState("");
-  return (
-    <React.Fragment>
-      <div className="flex justify-center mt-8 space-x-4 w-full max-w-md border-b-2 border-white/24  z-10 relative mb-5">
-        {categories &&
-          categories.length > 0 &&
-          categories?.map((category) => {
-            const isActive = selectedCategory === category?.slug;
-            return (
-              <motion.div
-                key={category?.id}
-                onClick={() => setCategory(category?.slug)}
-                className={`cursor-pointer px-4 py-2 relative flex items-center space-x-2 ${
-                  isActive ? "text-white " : "text-white"
-                }`}
-              >
-                <div className="flex flex-col items-center">
-                  <img
-                    src={"/categories/" + category?.slug + ".png"}
-                    alt={category?.name}
-                    className={
-                      "w-[32px] h-[32px] " +
-                      (isActive ? "opacity-100 " : "opacity-50")
-                    }
-                  />
-                  <span className={isActive ? "opacity-100  " : "opacity-50"}>
-                    {category.name}
-                  </span>
-                </div>
-                {isActive && (
-                  <motion.div
-                    layoutId="underline"
-                    className="absolute bottom-[-2px] left-0 right-0 h-[2px] bg-pink-500"
-                  />
-                )}
-                {category?.status === "Inactive" && (
-                  <p className="coming-soon-text absolute top-[-30px] w-[110px]">
-                    {" "}
-                    Coming
-                  </p>
-                )}
+const ChooseCategories = ({ setActiveTab }) => {
+  const [activeKey, setActiveKey] = useState(null); // No tab selected initially
 
-                {selectedTab === category.name && (
-                  <motion.div
-                    layoutId="underline"
-                    className="absolute bottom-[-2px] left-0 right-0 h-[2px] bg-pink-500"
-                  />
-                )}
-              </motion.div>
-            );
-          })}
+  const tabItems = [
+    {
+      key: "1",
+      icon: <FaBed size={24} />,
+      label: "Stays",
+    },
+    {
+      key: "2",
+      icon: <FaCar size={24} />,
+      label: "Vehicles",
+    },
+    {
+      key: "3",
+      icon: <FaCampground size={24} />,
+      label: "RVs",
+    },
+    {
+      key: "4",
+      icon: <FaShip size={24} />,
+      label: "Boats",
+    },
+  ];
+
+  const items = tabItems.map((item) => ({
+    ...item,
+    label: (
+      <div className="custom-tab-label">
+        <span>{item.label}</span>
       </div>
-    </React.Fragment>
+    ),
+  }));
+
+  const onChange = (key) => {
+    setActiveKey(key); // Update the active tab key
+    setActiveTab(true); // Call the parent handler
+  };
+
+  return (
+    <div className="pb-4">
+      <h3 className="text-lg font-medium py-3">Choose a Category</h3>
+      <Tabs
+        items={items}
+        activeKey={activeKey} // Bind the activeKey state
+        onChange={onChange}
+        className="custom-tabs"
+      />
+    </div>
   );
 };
 
-export default Tabs;
-{
-  /* <ul className="filter-list-tabs">
-          {categories &&
-            categories.length > 0 &&
-            categories?.map((category) => {
-              const isActive = selectedCategory === category?.slug;
-              return (
-                <li
-                  key={category?.id}
-                  className={`filter-list-tab ${
-                    isActive ? "filter-list-tab-active" : ""
-                  }`}
-                  onClick={() => setCategory(category?.slug)}
-                >
-                  <span className="filter-list-tab-icon relative">
-                    <img
-                      src={"/categories/" + category?.slug + ".png"}
-                      alt={category?.name}
-                      className={
-                        "w-[32px] h-[32px] " +
-                        (isActive ? "opacity-100" : "opacity-50")
-                      }
-                    />
-                    {category?.status === "Inactive" && (
-                      <p className="coming-soon-text absolute top-[-30px] w-[110px]">
-                        {" "}
-                        Coming
-                      </p>
-                    )}
-                  </span>
-                  <span className="font-[inter-s] text-[12px] text-[#9CA3AF]">
-                    {category?.name}
-                  </span>
-                </li>
-              );
-            })}
-        </ul> */
-}
+export default ChooseCategories;

@@ -1,7 +1,7 @@
 export default function PrivacyPolicy() {
   return (
-    <div className="bg-gray-100 py-10 px-4 ">
-      <div className="max-w-3xl mx-auto bg-white shadow-md p-6 rounded-md">
+    <div className="bg-white p-6">
+      <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">
           P33R Privacy Policy
         </h1>

@@ -66,7 +66,7 @@ function SearchListPage() {
 
   return (
     <>
-      <div className=" flex flex-col ">
+      <div className=" flex flex-col">
         <div className="py-6 flex flex-col gap-6  px-4 md:px-6 md:sticky md:top-0 bg-white">
           {products && products.length > 0 ? (
             <div className="flex flex-col lg:flex-row gap-6 px-4 md:px-6">

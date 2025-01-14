@@ -27,6 +27,8 @@ const LandingPage = () => {
   const [endDate, setEndDate] = useState(null);
   const [query, setQuery] = useState("");
 
+  const [Active, setActiveTab] = useState(false);
+
   useEffect(() => {
     getCategories();
   }, []);
@@ -118,7 +120,7 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="bg1 min-h-screen flex flex-col text-white overflow-hidden">
+    <div className="bg1 min-h-screen flex flex-col text-white overflow-hidden bg-red-600">
       <video
         ref={videoRef}
         autoPlay
@@ -144,29 +146,24 @@ const LandingPage = () => {
             selection of rentals.
           </span>
         </p>
-        <button className="text-white text-[18px] leading-[28.08px] font-[inter-r] font-bold pt-[28px]">
-          Choose Category
-        </button>
+        <Categories setActiveTab={setActiveTab} />
 
-        <Categories
-          categories={categories}
-          selectedCategory={category}
-          setCategory={setCategory}
-        />
-        <Filter
-          category={category}
-          location={location}
-          address={address}
-          startDate={startDate}
-          endDate={endDate}
-          query={query}
-          setLocation={setLocation}
-          setAddress={setAddress}
-          setStartDate={setStartDate}
-          setEndDate={setEndDate}
-          setQuery={setQuery}
-          handleSearch={handleSearch}
-        />
+        {Active && (
+          <Filter
+            category={category}
+            location={location}
+            address={address}
+            startDate={startDate}
+            endDate={endDate}
+            query={query}
+            setLocation={setLocation}
+            setAddress={setAddress}
+            setStartDate={setStartDate}
+            setEndDate={setEndDate}
+            setQuery={setQuery}
+            handleSearch={handleSearch}
+          />
+        )}
       </div>
       <Footer />
     </div>

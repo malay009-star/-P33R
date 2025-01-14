@@ -19,6 +19,10 @@ import React, { useState, useEffect, useRef } from "react";
 import Api from "@/api";
 import MapView from "@/components/map/input";
 import ImageViewer from "@components/listing/imageViewer";
+import ListingSpecifications from "@/components/listing/listingSpecifications";
+import ListingProgress from "@/components/listing/listingProgress";
+import ReviewGrid from "@/components/listing/reviewGrid";
+import SimilarListing from "@/components/listing/similarListing";
 import "@components/filterlist/filter.css";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -105,10 +109,9 @@ const MyPage = ({ params }) => {
           />
         )}
         <div className="p-3">
-          {/* <Lightbox images={images} /> */}
-          <div className="flex gap-6 flex-col lg:flex-row pb-[24px] border-b border-[#E0E0E0] w-full">
-            <div className="w-full lg:w-7/12 flex flex-col justify-start items-start">
-              {/* About Section */}
+          <div className="flex gap-6 flex-col lg:flex-row pb-[24px] w-full">
+            {/* right side */}
+            <div className="w-full lg:w-2/3 flex flex-col justify-start items-start">
               <div className="flex flex-col gap-16 w-full">
                 <div className="flex flex-col gap-4 pb-[24px] w-full">
                   <p className="text-[#1F1C1E] font-[inter-b] text-[28px] font-bold flex-1">
@@ -118,6 +121,29 @@ const MyPage = ({ params }) => {
                     <Skeleton />
                   ) : (
                     <div className="flex gap-4 items-start justify-start">
+                      <div className="flex gap-2 items-center">
+                        {(product?.location?.city ||
+                          product?.location?.state ||
+                          product?.location?.country) && (
+                          <IoLocationSharp
+                            className="text-gradientPink"
+                            size={20}
+                          />
+                        )}
+
+                        <p className="text-[#1F1C1E] font-Manrope text-base font-medium leading-normal">
+                          {product?.location?.city &&
+                          product?.location?.city !== "null"
+                            ? product?.location?.city + ", "
+                            : ""}
+                          {product?.location?.state &&
+                          product?.location?.state !== "null"
+                            ? product?.state + ", "
+                            : ""}
+                          {product?.location?.country ?? "United States"}
+                          {/* {product?.location?.city}, {product?.location?.state} */}
+                        </p>
+                      </div>
                       <div className="flex gap-2 items-center">
                         <div className="flex gap-2 items-center">
                           {product?.reviews?.score > 0 && (
@@ -146,132 +172,17 @@ const MyPage = ({ params }) => {
                           )}
                         </div>
                       </div>
-                      <div className="flex gap-2 items-center">
-                        {(product?.location?.city ||
-                          product?.location?.state ||
-                          product?.location?.country) && (
-                          <IoLocationSharp
-                            className="text-gradientPink"
-                            size={20}
-                          />
-                        )}
-
-                        <p className="text-[#1F1C1E] font-Manrope text-base font-medium leading-normal">
-                          {product?.location?.city &&
-                          product?.location?.city !== "null"
-                            ? product?.location?.city + ", "
-                            : ""}
-                          {product?.location?.state &&
-                          product?.location?.state !== "null"
-                            ? product?.state + ", "
-                            : ""}
-                          {product?.location?.country ?? "United States"}
-
-                          {/* {product?.location?.city}, {product?.location?.state} */}
-                        </p>
-                      </div>
                     </div>
                   )}
                 </div>
               </div>
 
+              {/* person detail */}
+              <ListingSpecifications />
+
               <div class="max-w-4xl mx-auto pr-6 r w-full ">
-                {/* <div class="flex justify-between border-b  py-[24px] w-full border-t border-[#E0E0E0]">
-                  <div class="text-left">
-                    {loading ? (
-                      <Skeleton width={100} />
-                    ) : (
-                      <p class="text-sm text-gray-500">Person</p>
-                    )}
-                    {loading ? (
-                      <Skeleton width={100} />
-                    ) : (
-                      <p class="text-lg font-semibold">14 person</p>
-                    )}
-                  </div>
-
-                  <div class="text-left">
-                    {loading ? (
-                      <Skeleton width={100} />
-                    ) : (
-                      <p class="text-sm text-gray-500">HP</p>
-                    )}
-                    {loading ? (
-                      <Skeleton width={100} />
-                    ) : (
-                      <p class="text-lg font-semibold">120 hp</p>
-                    )}
-                  </div>
-
-                  <div class="text-left">
-                    {loading ? (
-                      <Skeleton width={100} />
-                    ) : (
-                      <p class="text-sm text-gray-500">ft</p>
-                    )}
-                    {loading ? (
-                      <Skeleton width={100} />
-                    ) : (
-                      <p class="text-lg font-semibold">66 ft (20.2m)</p>
-                    )}
-                  </div>
-
-                  <div class="text-left">
-                    {loading ? (
-                      <Skeleton width={100} />
-                    ) : (
-                      <p class="text-sm text-gray-500">Year</p>
-                    )}
-                    {loading ? (
-                      <Skeleton width={100} />
-                    ) : (
-                      <p class="text-lg font-semibold">2023</p>
-                    )}
-                  </div>
-
-                  <div class="text-left">
-                    {loading ? (
-                      <Skeleton width={100} />
-                    ) : (
-                      <p class="text-sm text-gray-500">Captain</p>
-                    )}
-                    {loading ? (
-                      <Skeleton width={100} />
-                    ) : (
-                      <p class="text-lg font-semibold">With Captain</p>
-                    )}
-                  </div>
-                </div> */}
-
-                <div class="mt-6 w-full">
-                  {loading ? (
-                    <Skeleton width={100} />
-                  ) : (
-                    <h3 class="text-2xl font-bold mb-2">About</h3>
-                  )}
-                  {loading ? (
-                    <div className="w-full">
-                      <Skeleton count={10} />
-                    </div>
-                  ) : (
-                    <p class="text-gray-700">
-                      {!show
-                        ? trimParagraph(product?.description)
-                        : product?.description}
-                    </p>
-                  )}
-                  {!show && product?.description?.length > 300 && (
-                    <button
-                      class="text-[#D855A0] font-bold mt-2 flex items-center gap-1"
-                      onClick={() => setShow(true)}
-                    >
-                      <FaPlus />
-                      Show more
-                    </button>
-                  )}
-                </div>
-
-                {/* <div class="mt-[24px]">
+                {/* Detail */}
+                <div class="mt-[24px]">
                   <h3 class="text-2xl font-bold mb-2">Details</h3>
                   <div>
                     <h4 class="font-semibold">Rental Conditions</h4>
@@ -302,93 +213,91 @@ const MyPage = ({ params }) => {
                       Show more
                     </button>
                   </div>
-                </div> */}
+                </div>
+
+                <div class="mt-6 w-full border-t border-b py-4">
+                  {loading ? (
+                    <Skeleton width={100} />
+                  ) : (
+                    <h3 class="text-2xl font-bold mb-2">About</h3>
+                  )}
+                  {loading ? (
+                    <div className="w-full">
+                      <Skeleton count={10} />
+                    </div>
+                  ) : (
+                    <p class="text-gray-700">
+                      {!show
+                        ? trimParagraph(product?.description)
+                        : product?.description}
+                    </p>
+                  )}
+                  {!show && product?.description?.length > 300 && (
+                    <button
+                      class="text-[#D855A0] font-bold mt-2 flex items-center gap-1"
+                      onClick={() => setShow(true)}
+                    >
+                      <FaPlus />
+                      Show more
+                    </button>
+                  )}
+                </div>
               </div>
-
-              {/* Room Services */}
-
-              {/* border-b border-[#E0E0E0] in upper component */}
-              {/* {!loading ? (
-                        <p className="text-[#535052] font-Manrope text-base">
-                          {description.substring(0, 500)}
-                        </p>
-                      ) : (
-                        <Skeleton width={"100%"} count={10} height={20} />
-                      )} */}
-              {/* <div className="flex flex-col gap-10">
-                <div className="flex flex-col gap-2 items-start">
-                  <p className="bg-gradient-to-r from-gradientBlue via-gradientLightBlue to-gradientPink bg-clip-text text-transparent text-center font-manrope text-xl font-medium">
-                    {numDays(checkIn, checkOut)} Night at Vintage Airstream
+              {/* ..map.. */}
+              {product?.location?.latitude && product?.location?.longitude && (
+                <React.Fragment>
+                  <p className="w-fit bg-gradient-to-r py-6 from-gradientBlue via-gradientLightBlue to-gradientPink bg-clip-text text-transparent text-center font-manrope text-xl font-medium">
+                    Map location
                   </p>
-                  <p className="text-[#535052] font-Manrope text-base leading-normal">
-                    {dateFormat(checkIn)} - {dateFormat(checkOut)}
-                  </p>
-                </div>
-                <div className="flex flex-col gap-6">
-                  <div className="flex flex-col sm:flex-row gap-8">
-                    <Calendar
-                      fullscreen={false}
-                      disabledDate={(date) => {
-                        if (date.endOf("d").valueOf() < new Date().valueOf()) {
-                          return true;
-                        }
-                        return false;
-                      }}
-                    />
-                    <Calendar
-                      fullscreen={false}
-                      onChange={(e) => setCheckOut(new Date(e))}
-                      disabledDate={(date) => {
-                        if (date.endOf("d").valueOf() < new Date().valueOf()) {
-                          return true;
-                        }
-                        return false;
-                      }}
-                    />
+                  <MapView
+                    mapRef={mapRef}
+                    getUserLoc={false}
+                    editable={false}
+                    location={product?.location}
+                    height={"50vh"}
+                  />
+                </React.Fragment>
+              )}
+              <div className="border-t border-b py-4 mt-6 w-full">
+                <h2 className="text-xl font-bold mb-4">About the owner</h2>
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <div className="w-12 h-12 bg-[#074750] rounded-full flex items-center justify-center">
+                      <span className="text-white font-semibold">CP</span>
+                    </div>
                   </div>
-                  <div className="flex justify-end items-center underline text-[#535052] font-Manrope text-base leading-normal cursor-pointer font-medium">
-                    Clean dates
+                  <div className="flex flex-col">
+                    <span className="font-semibold">Charter Partner</span>
+                    <span className="text-gray-600 text-sm">
+                      Member since 2022
+                    </span>
+                    <div className="flex items-center mt-1">
+                      <div className="flex items-center">
+                        <svg
+                          className="w-4 h-4 text-yellow-400"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <span className="ml-1 text-sm font-medium">4.8</span>
+                        <span className="ml-1 text-sm text-gray-500">
+                          (230)
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
             </div>
+
+            {/* calendar */}
             {loading ? (
-              <div className="w-full lg:w-5/12 rounded-[20px] h-[50vh] flex flex-col">
+              <div className="w-full lg:w-1/3 rounded-[20px] h-[50vh] flex flex-col">
                 <Skeleton height={"50vh"} />
               </div>
             ) : (
               <div className="add-border items-center w-full lg:w-5/12 p-6 rounded-[20px] bg-[#FAFAFA] flex flex-col gap-4 h-fit">
-                {/* <div className="flex flex-col gap-5">
-                  <div className="flex gap-6 justify-between items-center">
-                    <p className="text-[#1F1C1E] font-Urbanist text-2xl font-medium">
-                      Pricing details
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <div className="flex flex-col sm:flex-row gap-1 sm:gap-4 items-center flex-wrap">
-                      <CalendarInput
-                        label={"Check in"}
-                        parentClassname={"flex-1"}
-                        wd={"w-full"}
-                        className="w-full"
-                        inputValue={dateFormat(checkIn)}
-                        value={checkIn}
-                        onChange={(value) => setCheckIn(value)}
-                        minDate={returnInputTD()}
-                        maxDate={checkOut}
-                      />
-                      <CalendarInput
-                        label={"Check out"}
-                        parentClassname={"flex-1"}
-                        wd={"w-full"}
-                        inputValue={dateFormat(checkOut)}
-                        value={checkOut}
-                        onChange={(value) => setCheckOut(value)}
-                        minDate={returnInputTD(checkIn)}
-                      />
-                    </div>
-                  </div>
-                </div> */}
                 <div className="fl-t w-[90%] flex flex-col items-center mx-auto relative">
                   <div
                     className="filter-box-input w-full"
@@ -483,24 +392,24 @@ const MyPage = ({ params }) => {
                 </div>
                 <div className="w-[90%] px-6 pt-2 ">
                   {/* Check in/out times */}
-                  {/* <div className="text-gray-700 text-lg">
+                  <div className="text-gray-700 text-">
                     Check in 5:00PM - Check out 9:00AM
-                  </div> */}
+                  </div>
 
                   {/* Rental details */}
-                  {/* <ul className="mt-4 space-y-2 list-disc list-inside text-gray-600">
+                  <ul className="mt-4 space-y-2 list-disc list-inside text-gray-600">
                     <li>Captain included in price</li>
                     <li>Type of rental: With captain</li>
-                  </ul> */}
+                  </ul>
 
                   {/* Divider */}
                   <div className="border-t border-gray-200 my-4"></div>
 
                   {/* Total price */}
-                  {/* <div className="flex justify-between items-center">
-                    <span className="text-xl font-bold">Total</span>
-                    <span className="text-xl font-bold">$1,307</span>
-                  </div> */}
+                  <div className="flex justify-between items-center">
+                    <span className="text-xl font-medium">Total</span>
+                    <span className="text-xl font-medium">$1,307</span>
+                  </div>
 
                   {/* Request quote button */}
                   <button
@@ -513,54 +422,13 @@ const MyPage = ({ params }) => {
               </div>
             )}
           </div>
-          {/* ..map.. */}
-          <div className="pt-[24px] flex flex-col gap-8">
-            {/* Map Heading */}
-            {product?.location?.latitude && product?.location?.longitude && (
-              <React.Fragment>
-                <p className="w-fit bg-gradient-to-r from-gradientBlue via-gradientLightBlue to-gradientPink bg-clip-text text-transparent text-center font-manrope text-xl font-medium">
-                  Map location
-                </p>
-                <MapView
-                  mapRef={mapRef}
-                  getUserLoc={false}
-                  editable={false}
-                  location={product?.location}
-                  height={"50vh"}
-                />
-              </React.Fragment>
-            )}
-            {/* <div className="max-w-md bd">
-              <h2 className="text-xl font-bold mb-4">About the owner</h2>
-              <div className="flex items-center gap-4">
-                <div className="relative">
-                  <div className="w-12 h-12 bg-teal-700 rounded-full flex items-center justify-center">
-                    <span className="text-white font-semibold">CP</span>
-                  </div>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-semibold">Charter Partner</span>
-                  <span className="text-gray-600 text-sm">
-                    Member since 2022
-                  </span>
-                  <div className="flex items-center mt-1">
-                    <div className="flex items-center">
-                      <svg
-                        className="w-4 h-4 text-yellow-400"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                      </svg>
-                      <span className="ml-1 text-sm font-medium">4.8</span>
-                      <span className="ml-1 text-sm text-gray-500">(230)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-          </div>
-          {/* <Reviews /> */}
+
+          {/* progress */}
+          <ListingProgress />
+
+          <ReviewGrid />
+
+          <SimilarListing />
         </div>
       </main>
     </section>
