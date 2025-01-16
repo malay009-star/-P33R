@@ -1,5 +1,8 @@
 import { Tabs } from "antd";
-import { FaBed, FaCar, FaCampground, FaShip } from "react-icons/fa";
+import { FaCar, FaCampground, FaShip } from "react-icons/fa";
+import { TbHomeSearch } from "react-icons/tb";
+import { PiSailboatBold } from "react-icons/pi";
+import { LuTrees } from "react-icons/lu";
 import React, { useState } from "react";
 import "./categories.css";
 
@@ -9,30 +12,30 @@ const ChooseCategories = ({ setActiveTab }) => {
   const tabItems = [
     {
       key: "1",
-      icon: <FaBed size={24} />,
+      Icon: <TbHomeSearch size={26} />,
       label: "Stays",
     },
     {
       key: "2",
-      icon: <FaCar size={24} />,
+      Icon: <FaCar size={26} />,
       label: "Vehicles",
     },
     {
       key: "3",
-      icon: <FaCampground size={24} />,
+      Icon: <LuTrees size={26} />,
       label: "RVs",
     },
     {
       key: "4",
-      icon: <FaShip size={24} />,
+      Icon: <PiSailboatBold size={26} />,
       label: "Boats",
     },
   ];
-
   const items = tabItems.map((item) => ({
     ...item,
     label: (
-      <div className="custom-tab-label">
+      <div className="flex flex-col items-center font-medium text-sm justify-center gap-3">
+        {item.Icon}
         <span>{item.label}</span>
       </div>
     ),
@@ -45,7 +48,7 @@ const ChooseCategories = ({ setActiveTab }) => {
 
   return (
     <div className="pb-4">
-      <h3 className="text-lg font-medium py-3">Choose a Category</h3>
+      <h3 className="text-xl font-medium py-3">Choose a Category</h3>
       <Tabs
         items={items}
         activeKey={activeKey} // Bind the activeKey state
