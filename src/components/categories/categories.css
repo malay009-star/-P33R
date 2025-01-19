@@ -24,3 +24,15 @@
 .ant-tabs-bottom > div > .ant-tabs-nav::before {
   border-bottom: 1px solid white !important;
 }
+
+.custom-tabs .ant-tabs-tab-btn svg path {
+  stroke: #9ca3af !important;
+}
+
+.custom-tabs .ant-tabs-tab:hover svg path {
+  stroke: white !important;
+}
+
+.custom-tabs .ant-tabs-tab.ant-tabs-tab-active svg path {
+  stroke: #d855a0 !important;
+}
