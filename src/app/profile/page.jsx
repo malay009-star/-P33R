@@ -1,5 +1,6 @@
 "use client";
 import "../globals.css";
+import { useRef } from "react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { Input } from "antd";
 import { MdOutlineMailOutline } from "react-icons/md";
@@ -15,22 +16,34 @@ import { useState } from "react";
 import PasswordModal from "@/components/profile/password";
 import { CiEdit } from "react-icons/ci";
 import { TbLockPassword } from "react-icons/tb";
+import { EditOutlined } from "@ant-design/icons";
+
 function ProfilePage() {
   const { profile } = useAuth();
 
   const [edit, setEdit] = useState(false);
   const [password, setPassword] = useState(false);
   const [showPersonalInfo, setShowPersonalInfo] = useState(true);
-  // const [showPersonalInfo, setShowPersonalInfo] = useState(true);
 
   const showPersonalDetail = () => {
     setShowPersonalInfo(true);
-    // setChangePasswordInfo(false);
   };
 
   const showChangePasswordDetail = () => {
     setShowPersonalInfo(false);
-    // setChangePasswordInfo(true);
+  };
+
+  const fileInputRef = useRef(null);
+
+  const handleIconClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Handle the selected file (e.g., upload or display a preview)
+    }
   };
 
   return (
@@ -38,13 +51,21 @@ function ProfilePage() {
       <div className="container xl:w-[70%] !py-8 rounded-2x flex items-start flex-col md:flex-row gap-7">
         <div className="rounded-2xl shadow-md border h-80 pt-8 justify-center p-4 w-full md:w-1/3">
           {/* Profile Image */}
-          <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden bg-gray-100 ">
+          <div className="relative w-28 h-24 mx-auto overflow-hidden z-0">
             <img
               src={getAvatar(profile?.avatar)}
               alt="profile"
-              // fill
-              // priority
-              className="object-contain w-full h-full"
+              className="w-[95%] h-[95%] rounded-full bg-gray-50"
+            />
+            <EditOutlined
+              onClick={handleIconClick}
+              className="absolute bottom-2 right-0 z-50 text-xl shadow-lg border bg-white rounded-full w-6 h-6 text-gray-600 cursor-pointer"
+            />
+            <input
+              type="file"
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={handleFileChange}
             />
           </div>
 

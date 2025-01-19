@@ -208,10 +208,10 @@ const MyPage = ({ params }) => {
                         <span>Not included</span>
                       </li>
                     </ul>
-                    <button class="text-[#D855A0] font-bold mt-2 flex items-center gap-1">
+                    {/* <button class="text-[#D855A0] font-bold mt-2 flex items-center gap-1">
                       <FaPlus />
                       Show more
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
