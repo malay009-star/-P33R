@@ -478,11 +478,11 @@ export const Option = ({ title, description, value, onLess, onMore }) => {
 };
 
 const trimParagraph = (description) => {
-  if (description.length <= 300) {
+  if (description?.length <= 300) {
     return description;
   }
   // Cut to 300 characters
-  const trimmed = description.slice(0, 300);
+  const trimmed = description?.slice(0, 300);
 
   // Find the last space to ensure we don't cut mid-word
   const lastSpaceIndex = trimmed.lastIndexOf(" ");

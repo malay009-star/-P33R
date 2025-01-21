@@ -106,9 +106,8 @@ export default function BoatListings() {
                   <span className="text-sm text-gray-500">
                     ({listing.reviews})
                   </span>
-                  <div className="flex items-center">
-                    <GiFishingBoat />
-                    <p className="text-sm font-medium">SameBoat</p>
+                  <div>
+                    <img src="/assets/same-boats.svg" alt="" />
                   </div>
                 </div>
                 <div className="font-semibold">
