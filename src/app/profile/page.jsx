@@ -74,7 +74,7 @@ function ProfilePage() {
           {/* Name and Email */}
           <div className="text-center mt-4">
             <h2 className="text-lg font-semibold text-gray-800">
-              {profile.name ? profile.name : profile?.email.split("@")[0]}
+              {profile?.name ? profile?.name : profile?.email.split("@")[0]}
             </h2>
             <p className="text-sm text-gray-500"> {profile?.email}</p>
           </div>
