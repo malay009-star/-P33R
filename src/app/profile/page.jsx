@@ -20,6 +20,8 @@ import { EditOutlined } from "@ant-design/icons";
 
 function ProfilePage() {
   const { profile } = useAuth();
+  const fileInputRef = useRef(null);
+  const [preview, setPreview] = useState(getAvatar(profile?.avatar));
 
   const [edit, setEdit] = useState(false);
   const [password, setPassword] = useState(false);
@@ -33,8 +35,6 @@ function ProfilePage() {
     setShowPersonalInfo(false);
   };
 
-  const fileInputRef = useRef(null);
-
   const handleIconClick = () => {
     fileInputRef.current.click();
   };
@@ -42,7 +42,9 @@ function ProfilePage() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      // Handle the selected file (e.g., upload or display a preview)
+      const previewUrl = URL.createObjectURL(file);
+      setPreview(previewUrl); // Update preview
+      // Aap yahan file ko backend API par upload kar sakte hain
     }
   };
 
@@ -51,15 +53,15 @@ function ProfilePage() {
       <div className="container xl:w-[70%] !py-8 rounded-2x flex items-start flex-col md:flex-row gap-7">
         <div className="rounded-2xl shadow-md border h-80 pt-8 justify-center p-4 w-full md:w-1/3">
           {/* Profile Image */}
-          <div className="relative w-28 h-24 mx-auto overflow-hidden z-0">
+          <div className="relative w-24 h-24 mx-auto overflow-hidden z-0">
             <img
-              src={getAvatar(profile?.avatar)}
+              src={preview}
               alt="profile"
-              className="w-[95%] h-[95%] rounded-full bg-gray-50"
+              className="w-full h-full rounded-full bg-gray-50"
             />
             <EditOutlined
               onClick={handleIconClick}
-              className="absolute bottom-2 right-0 z-50 text-xl shadow-lg border bg-white rounded-full w-6 h-6 text-gray-600 cursor-pointer"
+              className="absolute bottom-2 flex justify-center items-center right-0 z-50 text-xl border bg-white rounded-full w-7 h-7 cursor-pointer"
             />
             <input
               type="file"
@@ -72,7 +74,7 @@ function ProfilePage() {
           {/* Name and Email */}
           <div className="text-center mt-4">
             <h2 className="text-lg font-semibold text-gray-800">
-              {profile?.name}
+              {profile.name ? profile.name : profile?.email.split("@")[0]}
             </h2>
             <p className="text-sm text-gray-500"> {profile?.email}</p>
           </div>

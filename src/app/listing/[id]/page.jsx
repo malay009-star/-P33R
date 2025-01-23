@@ -228,11 +228,11 @@ const MyPage = ({ params }) => {
                   ) : (
                     <p class="text-gray-700">
                       {!show
-                        ? trimParagraph(product?.description)
+                        ? product?.description?.substring(0, 272)
                         : product?.description}
                     </p>
                   )}
-                  {!show && product?.description?.length > 300 && (
+                  {!show && product?.description?.length > 50 && (
                     <button
                       class="text-[#D855A0] font-bold mt-2 flex items-center gap-1"
                       onClick={() => setShow(true)}

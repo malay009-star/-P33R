@@ -31,7 +31,7 @@ const Footer = () => {
   return (
     <footer className="!py-8 border-t !mt-16 bg-[#F3F4F6]">
       <div className="container">
-        <div className=" flex font-[inter-r] flex-col md:flex-row items-center justify-between text-sm text-[#9CA3AF]">
+        <div className=" flex font-[inter-r] flex-col md:flex-row items-center justify-between text-sm text-[#3e4043]">
           {/* Links Section */}
           <div className="space-x-2 md:space-x-4 flex flex-wrap items-center justify-center md:justify-normal md:flex-row  md:items-start mb-4 md:mb-0">
             <a

@@ -263,11 +263,9 @@ const LandingPage = () => {
                     </div>
                   </div>
                   <div className="flex justify-between">
-                    <div className="flex items-center gap-1">
-                      <span className="text-sm">⭐ {listing.rating}</span>
-                      <span className="text-sm text-gray-500">
-                        ({listing.reviews})
-                      </span>
+                    <div className="flex items-center text-sm font-medium gap-1">
+                      <span>⭐ {listing.rating}</span>
+                      <span>({listing.reviews})</span>
                       <div>
                         <img src="/assets/same-boats.svg" alt="" />
                       </div>

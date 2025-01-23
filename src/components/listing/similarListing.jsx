@@ -81,7 +81,7 @@ export default function BoatListings() {
               <img
                 src={listing.images}
                 alt={listing.name}
-                className="w-full h-48 rounded-md"
+                className="w-full h-40 rounded-md"
               />
             </div>
             <div className="p-4 w-3/5 flex flex-col justify-between">
@@ -101,11 +101,9 @@ export default function BoatListings() {
                 </div>
               </div>
               <div className="flex justify-between">
-                <div className="flex items-center gap-1">
-                  <span className="text-sm">⭐ {listing.rating}</span>
-                  <span className="text-sm text-gray-500">
-                    ({listing.reviews})
-                  </span>
+                <div className="flex items-center font-medium text-sm gap-1">
+                  <span>⭐ {listing.rating}</span>
+                  <span>({listing.reviews})</span>
                   <div>
                     <img src="/assets/same-boats.svg" alt="" />
                   </div>
